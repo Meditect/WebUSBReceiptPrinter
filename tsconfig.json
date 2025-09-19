@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM"],
+    "types": ["w3c-web-usb"],
+
+    "strict": true,
+    "skipLibCheck": false,
+
+    "moduleResolution": "Bundler",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    "outDir": "dist",
+    "declaration": true,
+    "declarationMap": false,
+    "emitDeclarationOnly": false,
+
+    "sourceMap": true,
+    "isolatedModules": true,
+
+    /* migration progressive */
+    "allowJs": true,
+    "checkJs": false
+  },
+  "include": ["src"],
+  "exclude": ["dist", "node_modules"]
+}

@@ -3,13 +3,15 @@
   "version": "1.0.2",
   "type": "module",
   "exports": {
-      "browser": {
-          "import": "./dist/webusb-receipt-printer.esm.js",
-          "require": "./dist/webusb-receipt-printer.umd.js",
-          "script": "./dist/webusb-receipt-printer.umd.js"
-      }
+    ".": {
+      "types": "./dist/main.d.ts",
+      "import": "./dist/webusb-receipt-printer.esm.js",
+      "require": "./dist/webusb-receipt-printer.umd.js"
+    }
   },
-  "module": "src/main.js",
+  "main": "dist/webusb-receipt-printer.umd.js",
+  "module": "dist/webusb-receipt-printer.esm.js",
+  "types": "dist/main.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Meditect/WebUsbReceiptPrinter.git"
@@ -23,21 +25,21 @@
     "star",
     "epson"
   ],
-  "author": "Niels Leenheer",
+  "author": "Meditect",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Meditect/WebUsbReceiptPrinter/issues"
   },
   "homepage": "https://github.com/Meditect/WebUsbReceiptPrinter#readme",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^24.1.0",
-    "@rollup/plugin-node-resolve": "^15.0.2",
-    "@rollup/plugin-terser": "^0.4.1",
-    "rollup": "^3.20.7"
+    "@biomejs/biome": "2.2.4",
+    "@types/w3c-web-usb": "^1.0.12",
+    "typescript": "^5.9.2",
+    "vite": "^6.3.6"
   },
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w"
+    "build": "vite build && tsc --emitDeclarationOnly --outDir dist",
+    "dev": "vite dev"
   },
   "files": [
     "dist"
