@@ -1,17 +1,41 @@
-# WebUSBReceiptPrinter
+# WebUSBReceiptPrinter (Fork)
 
-This is an library that allows you to print to a USB connected receipt printer using WebUSB.
+This is a **fork** of [NielsLeenheer/WebUSBReceiptPrinter](https://github.com/NielsLeenheer/WebUSBReceiptPrinter).  
+It allows you to print to a USB connected receipt printer using WebUSB.
 
 <br>
 
-[![npm](https://img.shields.io/npm/v/@point-of-sale/webusb-receipt-printer)](https://www.npmjs.com/@point-of-sale/webusb-receipt-printer)
+[![npm (fork)](https://img.shields.io/npm/v/@medibase/webusb-receipt-printer?label=@medibase/webusb-receipt-printer)](https://www.npmjs.com/package/@medibase/webusb-receipt-printer)  
+[![npm (original)](https://img.shields.io/npm/v/@point-of-sale/webusb-receipt-printer?label=@point-of-sale/webusb-receipt-printer)](https://www.npmjs.com/package/@point-of-sale/webusb-receipt-printer)  
 ![GitHub License](https://img.shields.io/github/license/NielsLeenheer/WebUSBReceiptPrinter)
 
+> This fork is maintained for internal usage and published under a different npm scope.  
+> Original library is part of [@point-of-sale](https://point-of-sale.dev), a collection of libraries for interfacing browsers and Node with Point of Sale devices such as receipt printers, barcode scanners and customer facing displays.
 
-> This library is part of [@point-of-sale](https://point-of-sale.dev), a collection of libraries for interfacing browsers and Node with Point of Sale devices such as receipt printers, barcode scanners and customer facing displays.
+---
 
-<br>
+## 🔍 Comparison: Fork vs Original
 
+| Feature             | Original (@point-of-sale)                                | Fork (@medibase)                               |
+|---------------------|----------------------------------------------------------|-----------------------------------------------|
+| **NPM package**     | `@point-of-sale/webusb-receipt-printer`                  | `@medibase/webusb-receipt-printer`             |
+| **Maintainer**      | [Niels Leenheer](https://github.com/NielsLeenheer)       | Internal fork (maintained by our team)        |
+| **Purpose**         | General open-source usage                                | Internal usage (bugfixes, improvements, etc.) |
+| **License**         | MIT                                                      | MIT (same as original)                        |
+
+---
+
+## 📦 Installation
+
+Install from npm:
+
+```bash
+npm install @medibase/webusb-receipt-printer
+```
+or with Yarn:
+```bash
+yarn add @medibase/webusb-receipt-printer
+```
 ## What does this library do?
 
 In order to print a receipt on a receipt printer you need to build the receipt and encode it as in the ESC/POS or StarPRNT language. You can use the [`ReceiptPrinterEncoder`](https://github.com/NielsLeenheer/ReceiptPrinterEncoder) library for this. You end up with an array of raw bytes that needs to be send to the printer. One way to do that is using a direct USB connection using WebUSB.
@@ -28,7 +52,7 @@ There seems to be an incompatibility between the WebSerial implementation and th
 
 ## How to use it?
 
-Load the `webusb-receipt-printer.umd.js` file from the `dist` directory in the browser and instantiate a `WebUSBReceiptPrinter` object. 
+Load the `webusb-receipt-printer.umd.js` file from the `dist` directory in the browser and instantiate a `WebUSBReceiptPrinter` object.
 
 ```html
 <script src='webusb-receipt-printer.umd.js'></script>
@@ -99,7 +123,7 @@ The callback of the `connected` event is passed an object with the following pro
 -   `language`<br>
     Language of the printer, which can be either `esc-pos` or `star-prnt`. This can be used as an option for `ReceiptPrinterEncoder` to encode in the correct language for the printer.
 -   `codepageMapping`<br>
-    Code page mapping of the printer, which can be used as an option for `ReceiptPrinterEncoder` to map non-ascii characters to the correct codepage supported by the printer. 
+    Code page mapping of the printer, which can be used as an option for `ReceiptPrinterEncoder` to map non-ascii characters to the correct codepage supported by the printer.
 
 <br>
 
@@ -109,7 +133,7 @@ Once connected you can use the following command to print receipts.
 
 ### Printing receipts
 
-When you want to print a receipt, you can call the `print()` function with an array, or a typed array with bytes. The data must be properly encoded for the printer. 
+When you want to print a receipt, you can call the `print()` function with an array, or a typed array with bytes. The data must be properly encoded for the printer.
 
 For example:
 
@@ -132,13 +156,10 @@ let data = encoder
 
 receiptPrinter.print(data);
 ```
-
-<br>
-
 -----
 
-<br>
+## 📜 License
 
-This library has been created by Niels Leenheer under the [MIT license](LICENSE). Feel free to use it in your products. The  development of this library is sponsored by Salonhub.
 
-<a href="https://salohub.nl"><img src="https://salonhub.nl/assets/images/salonhub.svg" width=140></a>
+This library has been created by Niels Leenheer under the [MIT license](LICENSE). Feel free to use it in your products.
+

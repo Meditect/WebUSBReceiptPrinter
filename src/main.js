@@ -253,6 +253,7 @@ class WebUSBReceiptPrinter extends ReceiptPrinterDriver {
 		}
 		catch(error) {
 			console.log('Could not connect! ' + error);
+            throw error;
 		}
 	}
 
@@ -287,8 +288,12 @@ class WebUSBReceiptPrinter extends ReceiptPrinterDriver {
 
 		this.#endpoints.output = iface.alternate.endpoints.find(e => e.direction == 'out');
 		this.#endpoints.input = iface.alternate.endpoints.find(e => e.direction == 'in');
-		
-		await this.#device.reset();
+
+        try {
+            await this.#device.reset();
+        }catch(e) {
+            console.log(e);
+        }
 
 		this.#emitter.emit('connected', {
 			type:				'usb',
@@ -333,6 +338,7 @@ class WebUSBReceiptPrinter extends ReceiptPrinterDriver {
 
 			this.#read();
 		} catch(e) {
+            throw e;
 		}
 	}
 
@@ -356,6 +362,7 @@ class WebUSBReceiptPrinter extends ReceiptPrinterDriver {
 			}
 			catch(e) {
 				console.log(e);
+                throw e;
 			}
 		}
 	}

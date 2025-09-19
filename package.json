@@ -1,6 +1,6 @@
 {
-  "name": "@point-of-sale/webusb-receipt-printer",
-  "version": "2.0.0",
+  "name": "@medibase/webusb-receipt-printer",
+  "version": "1.0.0",
   "type": "module",
   "exports": {
       "browser": {
@@ -12,7 +12,7 @@
   "module": "src/main.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NielsLeenheer/WebUsbReceiptPrinter.git"
+    "url": "git+https://github.com/Meditect/WebUsbReceiptPrinter.git"
   },
   "keywords": [
     "usb",
@@ -26,9 +26,9 @@
   "author": "Niels Leenheer",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/NielsLeenheer/WebUsbReceiptPrinter/issues"
+    "url": "https://github.com/Meditect/WebUsbReceiptPrinter/issues"
   },
-  "homepage": "https://github.com/NielsLeenheer/WebUsbReceiptPrinter#readme",
+  "homepage": "https://github.com/Meditect/WebUsbReceiptPrinter#readme",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^24.1.0",
     "@rollup/plugin-node-resolve": "^15.0.2",
