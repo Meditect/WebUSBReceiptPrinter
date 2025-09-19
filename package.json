@@ -1,47 +1,47 @@
 {
-  "name": "@medibase/webusb-receipt-printer",
-  "version": "1.0.2",
-  "type": "module",
-  "exports": {
-    ".": {
-      "types": "./dist/main.d.ts",
-      "import": "./dist/webusb-receipt-printer.esm.js",
-      "require": "./dist/webusb-receipt-printer.umd.js"
-    }
-  },
-  "main": "dist/webusb-receipt-printer.umd.js",
-  "module": "dist/webusb-receipt-printer.esm.js",
-  "types": "dist/main.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Meditect/WebUsbReceiptPrinter.git"
-  },
-  "keywords": [
-    "usb",
-    "webusb",
-    "receipt",
-    "receiptprinter",
-    "escpos",
-    "star",
-    "epson"
-  ],
-  "author": "Meditect",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Meditect/WebUsbReceiptPrinter/issues"
-  },
-  "homepage": "https://github.com/Meditect/WebUsbReceiptPrinter#readme",
-  "devDependencies": {
-    "@biomejs/biome": "2.2.4",
-    "@types/w3c-web-usb": "^1.0.12",
-    "typescript": "^5.9.2",
-    "vite": "^6.3.6"
-  },
-  "scripts": {
-    "build": "vite build && tsc --emitDeclarationOnly --outDir dist",
-    "dev": "vite dev"
-  },
-  "files": [
-    "dist"
-  ]
+	"name": "@medibase/webusb-receipt-printer",
+	"version": "1.0.0",
+	"type": "module",
+	"exports": {
+		".": {
+			"types": "./dist/main.d.ts",
+			"import": "./dist/webusb-receipt-printer.esm.js",
+			"require": "./dist/webusb-receipt-printer.umd.js"
+		}
+	},
+	"main": "dist/webusb-receipt-printer.umd.js",
+	"module": "dist/webusb-receipt-printer.esm.js",
+	"types": "dist/main.d.ts",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Meditect/WebUsbReceiptPrinter.git"
+	},
+	"keywords": [
+		"usb",
+		"webusb",
+		"receipt",
+		"receiptprinter",
+		"escpos",
+		"star",
+		"epson"
+	],
+	"author": "Meditect",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Meditect/WebUsbReceiptPrinter/issues"
+	},
+	"homepage": "https://github.com/Meditect/WebUsbReceiptPrinter#readme",
+	"devDependencies": {
+		"@biomejs/biome": "2.2.4",
+		"@types/w3c-web-usb": "^1.0.12",
+		"typescript": "^5.9.2",
+		"vite": "^6.3.6"
+	},
+	"scripts": {
+		"build": "vite build && tsc --emitDeclarationOnly --outDir dist",
+		"dev": "vite dev"
+	},
+	"files": [
+		"dist"
+	]
 }
