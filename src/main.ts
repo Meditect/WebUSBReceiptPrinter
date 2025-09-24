@@ -245,6 +245,28 @@ export default class WebUSBReceiptPrinter {
 		}
 	}
 
+	private async initializeUsbDevice(
+		device: USBDevice,
+		options: {
+			configuration: number;
+			intf: number;
+			fallbackConfiguration: number;
+			fallbackIntf: number;
+		},
+	): Promise<void> {
+		try {
+			await device.open();
+			await device.selectConfiguration(options.configuration);
+			await device.claimInterface(options.intf);
+		} catch (e) {
+			console.log(e);
+			// Retry with conservative defaults
+			await device.open();
+			await device.selectConfiguration(options.fallbackConfiguration);
+			await device.claimInterface(options.fallbackIntf);
+		}
+	}
+
 	private async open(device: USBDevice): Promise<void> {
 		this.device = device;
 
@@ -262,9 +284,17 @@ export default class WebUSBReceiptPrinter {
 			throw new Error("No matching device profile found.");
 		}
 
-		await device.open();
-		await device.selectConfiguration(this.profile.configuration);
-		await device.claimInterface(this.profile.interface);
+		const primaryConfig = this.profile.configuration;
+		const primaryInterface = this.profile.interface;
+		const fallbackConfig = 1;
+		const fallbackInterface = 0;
+
+		await this.initializeUsbDevice(device, {
+			configuration: primaryConfig,
+			intf: primaryInterface,
+			fallbackConfiguration: fallbackConfig,
+			fallbackIntf: fallbackInterface,
+		});
 
 		const iface = device.configuration?.interfaces.find(
 			(i) => i.interfaceNumber === this.profile!.interface,

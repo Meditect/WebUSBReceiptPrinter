@@ -1,6 +1,6 @@
 {
 	"name": "@medibase/webusb-receipt-printer",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"type": "module",
 	"exports": {
 		".": {
@@ -39,6 +39,8 @@
 	},
 	"scripts": {
 		"build": "vite build && tsc --emitDeclarationOnly --outDir dist",
+		"pre:publish": "vite build && tsc --emitDeclarationOnly --outDir dist",
+		"publish": "yarn publish --access public",
 		"dev": "vite dev"
 	},
 	"files": [
