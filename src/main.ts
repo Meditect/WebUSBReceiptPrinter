@@ -212,32 +212,15 @@ export default class WebUSBReceiptPrinter {
 	}
 
 	async connect(): Promise<void> {
-		// Precompute filters and centralize device request logic
-		const knownProfileFilters = DeviceProfiles.flatMap((p) => p.filters);
-		const noFilters: USBDeviceFilter[] = [];
-		const requestAndOpen = async (
-			filters: USBDeviceFilter[],
-		): Promise<boolean> => {
-			try {
-				const device = await navigator.usb.requestDevice({ filters });
-				if (!device) return false;
-				await this.open(device);
-				return true;
-			} catch (err) {
-				console.error(`Could not connect! ${err}`);
-				return false;
-			}
-		};
-		const connectedWithProfiles = await requestAndOpen(knownProfileFilters);
-		if (connectedWithProfiles) {
-			return;
-		}
+		try {
+			const device = await navigator.usb.requestDevice({ filters: [] });
 
-		// Fallback: allow user to pick any device; if it fails, log and rethrow a generic error
-		const connectedWithoutFilters = await requestAndOpen(noFilters);
-		if (!connectedWithoutFilters) {
-			console.log("Could not connect with or without filters.");
-			throw new Error("USB device connection failed.");
+			if (device) {
+				await this.open(device);
+			}
+		} catch (error) {
+			console.log(`Could not connect! ${error}`);
+			throw error;
 		}
 	}
 
@@ -274,16 +257,9 @@ export default class WebUSBReceiptPrinter {
 				),
 			) ?? null;
 
-		if (!this.profile) {
-			console.warn("No matching device profile found.");
-			await device.open();
-			await device.selectConfiguration(1);
-			await device.claimInterface(0);
-		} else {
-			await device.open();
-			await device.selectConfiguration(this.profile.configuration);
-			await device.claimInterface(this.profile.interface);
-		}
+		await device.open();
+		await device.selectConfiguration(this.profile?.configuration || 1);
+		await device.claimInterface(this.profile?.interface || 0);
 
 		const iface = device.configuration?.interfaces.find(
 			(i) => i.interfaceNumber === this.profile?.interface || 0,
