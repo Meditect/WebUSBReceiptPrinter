@@ -258,19 +258,23 @@ export default class WebUSBReceiptPrinter {
 			) ?? null;
 
 		await device.open();
-		await device.selectConfiguration(this.profile?.configuration || 1);
-		await device.claimInterface(this.profile?.interface || 0);
+		await device.selectConfiguration(1);
+		await device.claimInterface(0);
 
-		const iface = device.configuration?.interfaces.find(
-			(i) => i.interfaceNumber === this.profile?.interface || 0,
-		);
+		const activeConfig = device?.configuration;
+		const iface = activeConfig?.interfaces[0];
+
 		if (!iface) {
-			throw new Error("USB interface not found on device.");
+			console.log(JSON.stringify(device.configuration?.interfaces, null, 2));
+			throw new Error(
+				"No usable USB interface (printer/vendor-specific) found.",
+			);
 		}
 
 		// `alternate` est l’alternate courant, défini par le navigateur
 		const alt = iface.alternate ?? iface.alternates?.[0];
 		if (!alt) {
+			console.log(JSON.stringify(device.configuration?.interfaces, null, 2));
 			throw new Error("USB alternate interface not available.");
 		}
 
