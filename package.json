@@ -35,7 +35,7 @@
 		"@biomejs/biome": "2.2.4",
 		"@types/w3c-web-usb": "^1.0.12",
 		"typescript": "^5.9.2",
-		"vite": "^6.3.6"
+		"vite": "^6.4.1"
 	},
 	"scripts": {
 		"build": "vite build && tsc --emitDeclarationOnly --outDir dist",
